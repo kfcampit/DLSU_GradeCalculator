@@ -22,7 +22,7 @@ class GradeCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Grade Calculator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dlsu_grade_calculator">
    <application
-        android:label="dlsu_grade_calculator"
+        android:label="Grade Calculator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
