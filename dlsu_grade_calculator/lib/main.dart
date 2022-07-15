@@ -8,6 +8,8 @@ int tabOneNumCourses = 0;
 int tabTwoNumCourses = 0;
 
 double tabOneGPA = 0.0;
+double tabTwoPercentGrade = 0.0;
+double tabTwoFinalGrade = 0.0;
 
 void main() {
   runApp(const GradeCalculator());
@@ -216,7 +218,7 @@ class _MainPageState extends State<MainPage> {
                             ),
                           )),
                       Expanded(
-                        flex: 3,
+                        flex: 2,
                         child: Text('GPA:',
                             textAlign: TextAlign.end,
                             style: primaryStyle(
@@ -603,24 +605,34 @@ class _MainPageState extends State<MainPage> {
                                               color: primaryColor,
                                               child: InkWell(
                                                 onTap: () {
-                                                  List<double> units = [];
+                                                  List<double> weights = [];
                                                   List<double> grades = [];
 
                                                   for (int i = 0;
-                                                      i < tabOneNumCourses;
+                                                      i < tabTwoNumCourses;
                                                       i++) {
-                                                    units.add(double.parse(
-                                                        tabOneUnitControllers[i]
-                                                            .text));
+                                                    weights.add(double.parse(
+                                                            tabTwoWeightControllers[
+                                                                    i]
+                                                                .text) /
+                                                        100);
                                                     grades.add(double.parse(
-                                                        tabOneGradeControllers[
-                                                                i]
-                                                            .text));
+                                                            tabTwoGradeControllers[
+                                                                    i]
+                                                                .text) /
+                                                        100);
                                                   }
 
                                                   setState(() {
-                                                    tabOneGPA = solveForGPA(
-                                                        units, grades);
+                                                    tabTwoPercentGrade =
+                                                        solveCoursePercentage(
+                                                            weights, grades);
+                                                    tabTwoFinalGrade =
+                                                        solveCourseGrade(
+                                                            tabTwoPercentGrade *
+                                                                100,
+                                                            double.parse(
+                                                                dropDownValue));
                                                   });
                                                 },
                                                 child: Column(
@@ -652,7 +664,7 @@ class _MainPageState extends State<MainPage> {
                                                 MainAxisAlignment.end,
                                             children: [
                                               Expanded(
-                                                flex: 3,
+                                                flex: 2,
                                                 child: Text('Percent Grade:',
                                                     textAlign: TextAlign.end,
                                                     style: primaryStyle(
@@ -662,7 +674,8 @@ class _MainPageState extends State<MainPage> {
                                               ),
                                               Expanded(
                                                 flex: 1,
-                                                child: Text('90%',
+                                                child: Text(
+                                                    "${(tabTwoPercentGrade * 100).toStringAsFixed(2)} %",
                                                     textAlign: TextAlign.center,
                                                     style: secondaryStyle(
                                                         14,
@@ -680,7 +693,7 @@ class _MainPageState extends State<MainPage> {
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Expanded(
-                                                  flex: 3,
+                                                  flex: 2,
                                                   child: Text('Final Grade:',
                                                       textAlign: TextAlign.end,
                                                       style: primaryStyle(
@@ -689,7 +702,10 @@ class _MainPageState extends State<MainPage> {
                                                           FontWeight.w600)),
                                                 ),
                                                 Expanded(
-                                                  child: Text('3.5',
+                                                  flex: 1,
+                                                  child: Text(
+                                                      tabTwoFinalGrade
+                                                          .toStringAsFixed(1),
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: secondaryStyle(
