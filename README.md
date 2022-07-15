@@ -11,6 +11,6 @@ The user can input their percent grades for each category of the course and the 
 
 *The grades shown for the course may not reflect the actual grade that you will receive*
 
-### Developed by *Kyle Francis M. Campit* - *ID120* - *BS Computer Engineering*
+##### Developed by *Kyle Francis M. Campit* - *ID120* - *BS Computer Engineering*
 
  
